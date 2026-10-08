@@ -6,8 +6,8 @@ Status at the time of writing: test cases designed, not executed yet. DEF-101 �
 
 | Requirement | Test cases | Technique | Coverage | Related defects |
 |---|---|---|---|---|
-| REQ-1 Amount 100 – 500,000, whole tenge | TR-AMT-001, 002, 003, 005, 006, 007 | EP + 3-value BVA | Covered: all four range boundaries and the decimal partition. Not covered: 98, 101, 499,999, 500,002, and empty / non-numeric input (left out to stay within 12 tests) | — |
-| REQ-2 Daily limit 1,000,000, reset at midnight Almaty time | TR-DAY-001 | Decision table | **Partly covered.** The limit check is covered. The **midnight reset is not covered**: TEST-2 cannot move the server clock (project risk in the test plan) | DEF-102 |
+| REQ-1 Amount 100 – 500,000, whole tenge | TR-AMT-001, 002, 003, 005, 006, 007 | EP + 3-value BVA | Covered: all four range boundaries and the empty partition. Not covered: 98, 101, 499,999, 500,002, decimal and non-numeric input (left out to keep the suite small) | — |
+| REQ-2 Daily limit 1,000,000, reset at midnight Almaty time | TR-DAY-001, TR-DAY-003 | Decision table; time boundary | The limit check is covered by TR-DAY-001. The midnight reset was found during an exploratory session at real midnight, no formal test case; TR-DAY-003 now covers it. TEST-2 cannot move the server clock, so TR-DAY-003 must run at real midnight (project risk in the test plan) | DEF-102 |
 | REQ-3 SMS code above 100,000 | TR-AMT-002, 003, 004, 005 | 3-value BVA | Covered on both sides of the threshold (100,000 / 100,001) | — |
 | REQ-4 Code valid 120 s; 3 wrong attempts cancel | TR-OTP-001, 002, 003 | State transition | Partly covered: 4 of the 7 valid-transition paths (TR-OTP-001, TR-OTP-002; TR-AMT-005 takes W1 → Confirmed; TR-OTP-003 passes W1 → Expired) plus one invalid transition (Expired + correct code). The other paths and invalid transitions are in the [SMS checklist](04-sms-release-checklist.md) | DEF-101 |
 | REQ-5 Amount error shown first | TR-DAY-002 | Decision table | Covered | — |
@@ -28,6 +28,7 @@ Status at the time of writing: test cases designed, not executed yet. DEF-101 �
 | TR-AMT-007 | ✔ | | | | |
 | TR-DAY-001 | | ✔ | | | |
 | TR-DAY-002 | | | | | ✔ |
+| TR-DAY-003 | | ✔ | | | |
 | TR-OTP-001 | | | | ✔ | |
 | TR-OTP-002 | | | | ✔ | |
 | TR-OTP-003 | | | | ✔ | |

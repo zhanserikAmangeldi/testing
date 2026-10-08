@@ -9,7 +9,7 @@
 | Field | Value |
 |---|---|
 | **Environment** | TEST-2 · iOS 18.2, iPhone 13 · app 4.11.0 (2291) · network: Wi-Fi |
-| **Preconditions** | Test customer TC-014, balance 1,000,000 KZT, daily total 0 |
+| **Preconditions** | Test customer CUST-014, balance 1,000,000 KZT, daily total 0 |
 | **Reproducibility** | 4 of 5 attempts (needs two taps within ~0.5 s) |
 | **Severity** | Critical: money debited twice from a customer's account |
 | **Priority** | High: blocks the release (exit criterion 2) |
@@ -17,7 +17,7 @@
 | **Status** | New |
 
 **Steps to reproduce**
-1. Log in as TC-014.
+1. Log in as CUST-014.
 2. Tap *Transfers → Between my accounts*.
 3. *From*: current account ending 1102; *To*: deposit ending 4417.
 4. Enter `200000` and tap *Continue*.
@@ -38,7 +38,7 @@
 | Field | Value |
 |---|---|
 | **Environment** | TEST-2 · Android 15, Pixel 7 · app 4.11.0 (2291) · server time zone: UTC |
-| **Preconditions** | Test customer TC-016, balance 2,000,000 KZT. Transfers totalling 950,000 KZT made the previous day; *Used today* shows 950,000 before midnight |
+| **Preconditions** | Test customer CUST-016, balance 2,000,000 KZT. Transfers totalling 950,000 KZT made the previous day; *Used today* shows 950,000 before midnight |
 | **Reproducibility** | 2 of 2 nights (needs the real clock between 00:00 and 05:00 Almaty time) |
 | **Severity** | High: customers cannot use their limit for 5 hours, and the limit can be exceeded around 05:00 |
 | **Priority** | High: affects every customer every night |
@@ -46,7 +46,7 @@
 | **Status** | New |
 
 **Steps to reproduce**
-1. At 00:30 Almaty time (UTC+5), log in as TC-016.
+1. At 00:30 Almaty time (UTC+5), log in as CUST-016.
 2. Open *Profile → Limits* and note *Used today*.
 3. Tap *Transfers → Between my accounts*; *From*: current account ending 1304; *To*: deposit ending 4619.
 4. Enter `60000` and tap *Continue*.
@@ -64,15 +64,15 @@
 | Field | Value |
 |---|---|
 | **Environment** | TEST-2 · iOS 18.2, iPhone 13 · app 4.11.0 (2291) |
-| **Preconditions** | Test customer TC-014 with the balance set to 150,000 KZT, daily total 0 |
+| **Preconditions** | Test customer CUST-014 with the balance set to 150,000 KZT, daily total 0 |
 | **Reproducibility** | 5 of 5 attempts |
-| **Severity** | Medium: no money is lost, but the customer gets an SMS and a misleading error |
+| **Severity** | High: no money is lost, but every customer with an insufficient balance gets an SMS and a misleading error, so the bank loses customers' trust |
 | **Priority** | Medium: fix together with the answer to Q-1 |
 | **Traces to** | **No requirement:** insufficient balance is not specified (traceability matrix, Q-1) |
 | **Status** | New: may be reclassified as a requirement change during triage |
 
 **Steps to reproduce**
-1. Log in as TC-014 (balance 150,000).
+1. Log in as CUST-014 (balance 150,000).
 2. Tap *Transfers → Between my accounts*; *From*: current account ending 1102; *To*: deposit ending 4417.
 3. Enter `200000` and tap *Continue*.
 4. Read the code from the SMS stub inbox and enter it.
